@@ -46,14 +46,10 @@ public class Movie extends Content implements Playable {
             }
 
             if (minutes > 0) {
-                if (this.stringBuilder.length() != 0) {
-                    this.stringBuilder.append(" ");
-                }
-
-                this.stringBuilder.append(String.format("%s min", minutes));
+                this.stringBuilder.append(String.format(" %s min", minutes));
             }
 
-            String result = this.stringBuilder.toString();
+            String result = this.stringBuilder.toString().trim();
             this.stringBuilder.delete(0, this.stringBuilder.length());
             return result;
         }
