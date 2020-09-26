@@ -14,6 +14,8 @@ public class Profile {
 
     public Profile(String name) {
         this.setName(name);
+        // default datum (moet mogenlijk later aangepast worden):
+        this.setDateOfBirth(LocalDate.now());
     }
 
     public String getName() {

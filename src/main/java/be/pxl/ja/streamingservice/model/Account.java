@@ -20,7 +20,6 @@ public class Account {
         this.email = email;
         this.password = password;
         Profile profile = new Profile(email);
-        profile.setDateOfBirth(LocalDate.now());
         this.profiles.add(profile);
     }
 
