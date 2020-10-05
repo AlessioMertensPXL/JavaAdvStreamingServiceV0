@@ -8,8 +8,8 @@ public class Profile {
     private LocalDate dateOfBirth;
 
     public Profile(String name, LocalDate dateOfBirth) {
-        this.setName(name);
-        this.setDateOfBirth(dateOfBirth);
+        setName(name);
+        setDateOfBirth(dateOfBirth);
     }
 
     public Profile(String name) {
@@ -31,6 +31,9 @@ public class Profile {
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
+        if (dateOfBirth.isAfter(LocalDate.now())){
+            throw new InvalidDateException(dateOfBirth,"birthDate","Birthday can not be in the future");
+        }
         this.dateOfBirth = dateOfBirth;
     }
 
