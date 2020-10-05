@@ -2,10 +2,7 @@ package be.pxl.ja.streamingservice.controller;
 
 import be.pxl.ja.streamingservice.StreamingService;
 import be.pxl.ja.streamingservice.StreamingServiceFactory;
-import be.pxl.ja.streamingservice.model.Account;
-import be.pxl.ja.streamingservice.model.CreditCardType;
-import be.pxl.ja.streamingservice.model.PaymentInfo;
-import be.pxl.ja.streamingservice.model.StreamingPlan;
+import be.pxl.ja.streamingservice.model.*;
 import be.pxl.ja.streamingservice.util.PasswordUtil;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -106,7 +103,7 @@ public class RegistrationController implements Initializable {
 
 	public void onRegister(ActionEvent actionEvent) {
 		PaymentInfo paymentInfo = new PaymentInfo();
-		paymentInfo.setCardNumber(cardnumberTextField.getText());
+		paymentInfo.setCardNumber(new CreditCardNumber(cardnumberTextField.getText(),cvcTextField.getText()));
 		paymentInfo.setExpirationDate(expirationDatePicker.getValue());
 		paymentInfo.setFirstName(firstnameTextField.getText());
 		paymentInfo.setLastName(lastnameTextField.getText());
