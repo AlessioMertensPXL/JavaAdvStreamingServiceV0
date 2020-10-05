@@ -3,22 +3,25 @@ package be.pxl.ja.streamingservice.model;
 import java.time.LocalDate;
 
 public class PaymentInfo {
-    private String cardNumber;
-    private CreditCardType type;
+    private CreditCardNumber cardNumber;
     private String firstName;
     private String lastName;
     private LocalDate expirationDate;
-    private int securityCode;
+
 
     public PaymentInfo() {
     }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setType(CreditCardType type) {
-        this.type = type;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
     public void setFirstName(String firstName) {
@@ -30,34 +33,9 @@ public class PaymentInfo {
     }
 
     public void setExpirationDate(LocalDate expirationDate) {
+        if (LocalDate.now().plusMonths(1).isAfter(expirationDate)){
+            throw new InvalidDateException(expirationDate,"expirationDate","Must be valid for at least 1 month.");
+        }
         this.expirationDate = expirationDate;
-    }
-
-    public void setSecurityCode(int securityCode) {
-        this.securityCode = securityCode;
-    }
-
-    public String getCardNumber() {
-        return this.cardNumber;
-    }
-
-    public CreditCardType getType() {
-        return this.type;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public LocalDate getExpirationDate() {
-        return this.expirationDate;
-    }
-
-    public int getSecurityCode() {
-        return this.securityCode;
     }
 }
