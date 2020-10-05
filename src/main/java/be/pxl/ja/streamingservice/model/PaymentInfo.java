@@ -4,12 +4,41 @@ import java.time.LocalDate;
 
 public class PaymentInfo {
     private CreditCardNumber cardNumber;
+    private CreditCardType type;
     private String firstName;
     private String lastName;
     private LocalDate expirationDate;
-
+    private int securityCode;
 
     public PaymentInfo() {
+    }
+
+    public void setCardNumber(CreditCardNumber cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public void setType(CreditCardType type) {
+        this.type = type;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setSecurityCode(int securityCode) {
+        this.securityCode = securityCode;
+    }
+
+    public CreditCardNumber getCardNumber() {
+        return cardNumber;
+    }
+
+    public CreditCardType getType() {
+        return type;
     }
 
     public String getFirstName() {
@@ -24,12 +53,8 @@ public class PaymentInfo {
         return expirationDate;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public int getSecurityCode() {
+        return securityCode;
     }
 
     public void setExpirationDate(LocalDate expirationDate) {
