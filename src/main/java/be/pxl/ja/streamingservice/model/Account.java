@@ -2,6 +2,8 @@ package be.pxl.ja.streamingservice.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class Account {
@@ -9,18 +11,22 @@ public class Account {
     private String password;
     private PaymentInfo paymentInfo;
     private StreamingPlan streamingPlan;
-    private List<Profile> profiles = new ArrayList();
+    private HashMap<String, Profile> profiles = new HashMap<>();
 
     public Account() {
         Profile profile = new Profile("profile1");
-        this.profiles.add(profile);
+        //voorlopig basic streamingplan by default
+        setStreamingPlan(StreamingPlan.BASIC);
+        addProfile(profile);
     }
 
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
         Profile profile = new Profile(email);
-        this.profiles.add(profile);
+        //voorlopig basic streamingplan by default
+        setStreamingPlan(StreamingPlan.BASIC);
+        addProfile(profile);
     }
 
     public void setEmail(String email) {
@@ -40,9 +46,22 @@ public class Account {
     }
 
     public Profile getFirstProfile() {
-        return (Profile)this.profiles.get(0);
+        // vragen hoe dit effectief moet gebeuren, hashmaps hebben geen volgorde
+        return getProfile("profile1");
     }
 
+    public void addProfile(Profile profile) {
+        if (profiles.size() < streamingPlan.getNumberOfProfiles()) {
+            profiles.put(profile.getName(), profile);
+        } else {
+            throw new TooManyProfilesException();
+        }
+
+    }
+
+    public Profile getProfile(String name){
+        return profiles.get(name);
+    }
     public boolean verifyPassword(String password) {
         return this.password.equals(password);
     }

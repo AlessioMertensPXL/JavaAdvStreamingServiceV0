@@ -7,6 +7,14 @@ public enum StreamingPlan {
     STANDAARD(2, new BigDecimal(11.99D)),
     PREMIUM(4, new BigDecimal(15.99D));
 
+    public int getNumberOfProfiles() {
+        return numberOfProfiles;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
     private int numberOfProfiles;
     private BigDecimal price;
 
